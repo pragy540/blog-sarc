@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,131 +8,109 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    body{
-      background-color:white;
-    }
-    .row.content {height: 1500px}
-
-    #sections>li>a:hover, #sections_nav>li>a:hover {
-      color: #373737;
-      background-color: white;
-      text-decoration:none;
-    }
-    #sections>li>a, #sections_nav>li>a{
-      color:white;
-      text-decoration: none;
-    }
-    #sign>a, #sign>a:hover{
-      color:white;
-      text-decoration: none;
-    }
-    /* Set gray background color and 100% height */
-    #desktop-nav {
-      background-color: #373737;
-      color: white;
-      height: 100%;
-      position:fixed;
-    }
-    .active{
-      background-color: #81c483;
-    }
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #373737;
-      color: white;
-      padding: 0px;
-    }
-    
-    /* On small screens, set height to 'auto' for#desktop-nav and grid */
-
-    @media screen and (min-width: 1200px) {
-      #desktop-nav {
-        display: unse;
-      }
-      #mobile-nav{
-        display:none;
-      }
-      .row.content {height: auto;} 
-    }
-   @media screen and (max-width: 1200px) {
-      #desktop-nav {
-        display: none;
-      }
-      #mobile-nav{
-        display: : unset;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
+  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}" >
+  <script src="{% static 'script.js' %}"></script>
 {% block script %}
 {% endblock %}
+ <script>  
+    $(document).ready(function(){
+      if({{section}}==1)
+      {
+        $("#sections").children().first().children().addClass("active");
+        $("#sections_nav").children().first().children().addClass("active");
+      }
+      else if({{section}}==2)
+      {
+        $("#sections").children().eq(1).children().addClass("active");
+        $("#sections_nav").children().eq(1).children().addClass("active");
+      }
+      else if({{section}}==3)
+      {
+        $("#sections").children().eq(2).children().addClass("active");
+        $("#sections_nav").children().eq(2).children().addClass("active");
+
+      }
+      else if({{section}}==4)
+      {
+        $("#sections").children().eq(3).children().addClass("active");
+        $("#sections_nav").children().eq(3).children().addClass("active");
+      }
+      else
+      {
+
+      }
+    });
+  </script>
 </head>
 <body>
-<nav id="mobile-nav" class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-        </button>
-        <a class="navbar-brand" style="color:white;" href="{% url 'posts:index' %}">SARC Blog</a>
+
+<div id="mobile-nav">
+  <div id="button">
+    <div class="bar"></div>   
+    <div class="bar"></div> 
+    <div class="bar"></div>                     
+  </div>
+  <div id="panel">
+      <div id="close">
+        <span class="glyphicon glyphicon-remove"></span>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <form class="navbar-form navbar-left" method="post" action="{% url 'posts:index' %}">
-          {% csrf_token %}
-          <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search Blog..">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
-                <i class="glyphicon glyphicon-search"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-        <ul class="nav navbar-nav" id="sections_nav">
-          <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
-          <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
-          <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
-          <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
-        </ul>
-      </div>
-    </div>
-</nav>
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-lg-3 sidenav" id="desktop-nav">
-      <h2 id="sign"><a href="{% url 'posts:index' %}">SARC Blog</a></h2>
-      <form method="post" action="{% url 'posts:index' %}">
-        {% csrf_token %}
-        <div class="input-group">
-          <input type="text" name="search" id="search" class="form-control search" placeholder="Search Blog..">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-      </form>
-      <hr>
-      <ul class="nav nav-pills nav-stacked" id="sections">
+      <div id="title"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
+      <ul id="sections_nav">
         <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
         <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
         <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
         <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
       </ul>
-      <hr>
-      <footer class="container-fluid" id="sign">
-        <a href=""><span>Made by Team Web, SARC.</span></a>
-      </footer>
+  </div>
+  <div id="btn">
+    <span class="glyphicon glyphicon-search"></span>
+  </div>
+  <div id="search">
+    <div id="cross">
+        <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <div id="form">
+      <form method="post" action="{% url 'posts:index' %}">
+          {% csrf_token %}
+          <input type="text" name="search" autofocus> 
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-lg-4 col-md-4 sidenav" style="padding:0;">
+      <div id="desktop-nav">
+        <div id="sign"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
+        <form method="post" action="{% url 'posts:index' %}">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" name="search" class="form-control search" placeholder="Search Blog..">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+        </form>
+        <ul class="nav nav-pills nav-stacked" id="sections">
+          <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
+          <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
+          <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
+          <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
+        </ul>
+        <footer class="container-fluid">
+          <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span>Made by Team Web and Design, SARC.</span></a>
+        </footer>
+      </div>
     </div>
   {% block content %}
   {% endblock %}
   </div>
 </div>
 
-  
+
 </body>
 </html>

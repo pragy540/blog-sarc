@@ -31,14 +31,14 @@ def index(request):
 	if request.method == "GET":
 		all_posts = Post.objects.all()
 		posts = paginator_x(all_posts,request)
-		return render(request, 'index.html',{'all_posts':posts})
+		return render(request, 'index.html',{'all_posts':posts,'section': -1})
 	elif request.method == "POST":
 		search_str = request.POST.get("search")
 		search_posts = search_function(search_str)
 		if not search_posts:
 			return render(request, 'search.html',{})
 		else:
-			return render(request, 'index.html',{'all_posts':search_posts})
+			return render(request, 'index.html',{'all_posts':search_posts,'section': 0})
 
 
 def hotc(request):
