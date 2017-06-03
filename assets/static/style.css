@@ -247,8 +247,8 @@ body {
   background-color: #C5D5D8;
   color: #6D6D6D; }
 
-/* for desktops and large screens */
-@media only screen and (min-width: 1024px) {
+/* for desktops */
+@media only screen and (min-width: 1025px) {
   #desktop-nav {
     display: unset; }
 
@@ -257,44 +257,8 @@ body {
 
   .row.content {
     height: auto; } }
-/* for potrait smartphones */
-@media only screen and (max-width: 414px) {
-  #desktop-nav {
-    display: none; }
-
-  #bootlag {
-    padding: 0; }
-
-  #mobile-nav {
-    display: unset; }
-
-  .row.content {
-    height: auto; } }
-/* for landscape smartphones */
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  #desktop-nav {
-    display: none; }
-
-  #bootlag {
-    padding: 0; }
-
-  #mobile-nav {
-    display: unset; }
-
-  .row.content {
-    height: auto; } }
-/* for iPads (landscape) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  #desktop-nav {
-    display: unset; }
-
-  #mobile-nav {
-    display: none; }
-
-  .row.content {
-    height: auto; } }
-/*  for iPads (portrait) */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+/* for tablets */
+@media only screen and (max-width: 1025px) {
   #desktop-nav {
     display: none; }
 

@@ -69,4 +69,8 @@ def kya(request):
 		posts = paginator_x(all_posts,request)
 		return render(request, 'index.html',{'all_posts':posts,'section':4})
 
+def post(request, title):
+    post = Post.objects.get(title = title)
+    return render(request, 'post.html', {'post':post,'section':0})
+
 

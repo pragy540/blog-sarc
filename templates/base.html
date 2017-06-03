@@ -14,6 +14,10 @@
 {% endblock %}
  <script>  
     $(document).ready(function(){
+      $(".postfeed").click(function(){
+              
+      });
+
       if({{section}}==1)
       {
         $("#sections").children().first().children().addClass("active");
@@ -35,10 +39,7 @@
         $("#sections").children().eq(3).children().addClass("active");
         $("#sections_nav").children().eq(3).children().addClass("active");
       }
-      else
-      {
-
-      }
+      else{}
     });
   </script>
 </head>
@@ -81,8 +82,8 @@
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-lg-4 col-md-4 sidenav" style="padding:0;">
-      <div id="desktop-nav">
+    <div class="col-lg-4" style="padding:0;">
+      <div id="desktop-nav" class="sidenav"">
         <div id="sign"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
         <form method="post" action="{% url 'posts:index' %}">
           {% csrf_token %}
