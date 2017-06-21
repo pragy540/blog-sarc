@@ -13,7 +13,7 @@ SECRET_KEY = '!iibn@d^=1(x(!s4=-(p4x2joz=ayh*u$6_k(q^@i8nb%gu4*k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.101','192.168.43.92','10.196.12.74', 'localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['192.168.0.101','192.168.43.92','10.196.12.74', '10.196.4.100','localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 

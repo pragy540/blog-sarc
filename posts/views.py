@@ -9,7 +9,7 @@ from django.db.models import Q
 # Create your views here.
 
 def paginator_x(all_posts,request):
-	paginator = Paginator(all_posts,2)
+	paginator = Paginator(all_posts,10)
 	page = request.GET.get('page')
 	try:
 		posts = paginator.page(page)
@@ -22,7 +22,7 @@ def paginator_x(all_posts,request):
 	return posts
 
 def search_function(string):
-	posts_qs = Post.objects.all().filter(Q(tags__tag__icontains = string)|Q(title__icontains = string))
+	posts_qs = Post.objects.all().filter(Q(tags__tag__icontains = string)|Q(title__icontains = string)|Q(author__icontains = string))
 	return posts_qs
 
 
@@ -30,8 +30,8 @@ def search_function(string):
 def index(request):
 	if request.method == "GET":
 		all_posts = Post.objects.all()
-		posts = paginator_x(all_posts,request)
-		return render(request, 'index.html',{'all_posts':posts,'section': -1})
+		#posts = paginator_x(all_posts,request)
+		return render(request, 'index.html',{'all_posts':all_posts,'section': -1})
 	elif request.method == "POST":
 		search_str = request.POST.get("search")
 		search_posts = search_function(search_str)
@@ -69,8 +69,8 @@ def kya(request):
 		posts = paginator_x(all_posts,request)
 		return render(request, 'index.html',{'all_posts':posts,'section':4})
 
-def post(request, title):
-    post = Post.objects.get(title = title)
+def post(request, pk):
+    post = Post.objects.get(pk = pk)
     return render(request, 'post.html', {'post':post,'section':0})
 
 

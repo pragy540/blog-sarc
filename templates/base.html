@@ -1,6 +1,6 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" class="startup">
 <head>
   <title>SARC-Blog</title>
   <meta charset="utf-8">
@@ -10,14 +10,46 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}" >
   <script src="{% static 'script.js' %}"></script>
+  <!--fb comments plugin-->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="/media/icon.png"/>
 {% block script %}
 {% endblock %}
- <script>  
-    $(document).ready(function(){
+  <script>  
+    $(document).ready(function(){ 
       $(".postfeed").click(function(){
+            $("body").css({"color":"#999"});
+            $(this).prepend("<div id='loadinganimation'></div>");
+            $(this).children("#likes").fadeOut(500);
+            $(this).children("#date").fadeOut(500);
+            $(this).children("img").fadeOut(500);
+            $(this).delay(500).animate({border:'0px'},1000);
+            $(this).children(".tags").fadeOut(500);
+            $(this).children("#header").delay(500).animate({top:'-30px',opacity:'0'},500);
+            $(this).children("#loadinganimation").delay(500).fadeOut(500);
+            $(this).children("#loading").fadeOut(500);
+            var x = $(this).position();
+            $("#dummy").css({"top":x.top,"left":x.left});
+            var $postfeed = $(this);
+            var $link = $(this).children("a")[0];
+            setTimeout(function(){
+              $postfeed.before("<div id='dummy'></div>");
+              setTimeout(function(){$link.click();}, 800);
               
+            }, 1000);  
       });
-
       if({{section}}==1)
       {
         $("#sections").children().first().children().addClass("active");
@@ -57,10 +89,12 @@
       </div>
       <div id="title"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
       <ul id="sections_nav">
+      <!--        
         <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
         <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
         <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
         <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
+      -->
       </ul>
   </div>
   <div id="btn">
@@ -97,13 +131,24 @@
           </div>
         </form>
         <ul class="nav nav-pills nav-stacked" id="sections">
+<!--
           <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
           <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
           <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
           <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
+-->
         </ul>
+ 
         <footer class="container-fluid">
-          <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span>Made by Team Web and Design, SARC.</span></a>
+          <a href="https://www.facebook.com/SARC.IITB/" class="fa fa-facebook" target="_blank"></a>  
+          <a href="https://twitter.com/SARC_IITB" class="fa fa-twitter" target="_blank"></a> 
+          <a href="https://www.youtube.com/user/SARCIIT" class="fa fa-youtube" target="_blank"></a>  
+          <a href="https://www.linkedin.com/in/sarciitb/" class="fa fa-linkedin" target="_blank"></a>
+          @copyright is with SARC IITB.
+          <div style="width:100%; padding-top:2%; "></div>
+          <div style="width: 100%; padding-top:0.3%; background-color:#777777;"></div>
+          <div style="width:100%; padding-top:2%; "></div>
+          <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Made by Team Web and Design, SARC.</span></a>
         </footer>
       </div>
     </div>

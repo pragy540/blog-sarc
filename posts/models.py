@@ -25,6 +25,10 @@ class Post(models.Model):
 	tags = models.ManyToManyField(Tag, blank = False)
 	thumbnail = RestFileField(content_types=['image/jpeg', 'image/png'], max_upload_size=4194304,
                              upload_to="thumbnail-photo", default = '')
+
+	def get_tags(self):
+		return ', '.join([elem.tag for elem in self.tags.all()])
+
 	def __unicode__(self):
 		return self.title
 

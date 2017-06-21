@@ -9,6 +9,66 @@ $hover-border: #96C1EA;
 $hover-content: #515151;
 $shadow: #999996;
 
+/* The animation code */
+@keyframes example {
+    0% {
+      background-color:white;
+    }
+    50% {
+      background-color:$sidebar;
+    }
+    100% {
+      background-color:white;
+    }
+}
+
+@keyframes slideInFromBottom{
+  0% {
+    transform:translateY(30%);
+    opacity:0;
+  }
+  100% {
+    transform:translateY(0%);
+    opacity:1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fade{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+@keyframes loading{
+  0%{
+    width:0%;
+  }
+  100%{
+    width:50%;
+  }
+}
+
+@keyframes scaleanimation{
+  0%{
+    transform: scale(0,0);
+  }
+  100%{
+    transform: scale(10, 10);
+  }
+}
+
 *{
   padding:0;
   margin:0;
@@ -18,7 +78,22 @@ $shadow: #999996;
 body{
   background-color:white;
 }
+
 .row.content {height: 1500px}
+
+.scaletransition{
+  animation:scaleanimation 0.5s linear;
+}
+
+#dummy{
+  position:absolute;
+  z-index:9;
+  width:100%;
+  height:100%;
+  animation:scaleanimation .5s ease-in-out;
+  transform:scale(10,10);
+  background-color:gray;
+}
 
 #bootlag{
   right:0px;
@@ -39,10 +114,12 @@ body{
   padding:0px;
   padding-top:100%;
   width:auto;
+  overflow:hidden;
   box-shadow:0 0 15px $shadow;
   border:none;
   color:$content;
   text-align:center;
+  animation: example 0.5s ease-out 0s;
     img{
         position:absolute;
         width:40%;
@@ -95,6 +172,17 @@ body{
         height:2px;
         margin:auto;
     }
+    #loadinganimation{
+      position:absolute;
+      z-index:1;
+      left:25%;
+      top:33%;
+      border-bottom: 4px solid $hover-border;
+      width:50%;
+      height:2px;
+      margin:auto;
+      animation: loading 0.5s linear;
+    }
     #likes{
       position: absolute;      
       bottom:20px;
@@ -110,10 +198,14 @@ body{
 #desktop-nav {
   background-color: $sidebar;
   padding:0px;
+  z-index:10;
   color: $content;
   height: 100%;
   width:366/1280*100%;
   position: fixed;
+  span{
+    color:$sidebar;
+  }
   #sign{
     position:absolute;
     top:50px;
@@ -166,8 +258,8 @@ body{
 
 #mobile-nav{
   #button{
-    position:fixed;
-    z-index:1;
+    position:fixed;  
+    z-index:10;
     width:50px;
     height:50px;
     color:$content;
@@ -183,7 +275,7 @@ body{
   #panel{
     position:fixed;
     width:100%;
-    z-index:2;
+    z-index:11;
     left:0;
     top:0;
     height:100%;
@@ -258,7 +350,7 @@ body{
     }
   #search{
     padding:0px;
-    z-index:2;
+    z-index:10;
     position:fixed;
     top:0;
     right:0;
@@ -267,6 +359,7 @@ body{
     background-color:$sidebar;
     #cross{
       position:absolute;
+      z-index:10;
       color:$content;
       right:10px;
       top:10px;
@@ -312,9 +405,47 @@ body{
   color:$sarcblog;
 }
 
+.post{
+  position:relative;
+  z-index:9;
+  padding-top:2%;
+  #header{
+    text-align:center;
+    animation: slideInFromBottom 0.5s ease-in-out;
+  }
+  img{
+    border:1px solid black;
+  }
+  #likes{
+    position:absolute;
+    right:0;
+    padding:2%;
+    animation: fade 0.5s ease-in-out;
+  }
+  #date{
+    position:absolute;
+    left:0;
+    padding:2%;
+    animation: fade 0.5s ease-in-out;
+  }
+  .tags{
+    position:relative;
+    left:0;
+    right:0;
+    width:60%;
+    margin:auto;
+    text-align:center;
+    span{
+      position:relative;
+      background-color:$content;
+      color:white;
+    } 
+  }
+}
+
 
 /* for desktops */
-@media only screen and (min-width: 1025px){
+@media only screen and (min-width: 1200px){
   #desktop-nav {
     display: unset;
   }
@@ -325,7 +456,7 @@ body{
 }
 
 /* for tablets */
-@media only screen and (max-width:1025px){
+@media only screen and (max-width:1200px){
   #desktop-nav {
     display: none;
   }

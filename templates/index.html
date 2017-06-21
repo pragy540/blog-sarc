@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-
 {% block content %}
+    <div id="#dummy">
+    </div>
     <div class="col-lg-offset-3 col-lg-9 col-md-12 col-sm-12">
         <div id="bootlag" class="container">
         <div id="pageheader">
-          <div >Latest Articles</div>
+          <div>Latest Articles</div>
           <div style="position:absolute;top:6px;right:25px;">Sort By: <span style="color:#96C1EA;">Popularity&nbsp;<span class="glyphicon glyphicon-triangle-bottom"></span></span>
         </div>
         </div>
@@ -13,9 +14,10 @@
         {% for post in all_posts %}
           <div class="col-lg-4 col-sm-6 col-md-4" style="padding:0;margin:0;">
             <div class="postfeed">
+              <a href="{% url 'posts:post' post.pk %}"></a> 
                 <div id="header">
                     <h3>{{post.title}}</h3>
-                    <h6>{{post.author}}</h6>  
+                    <h6><i>by</i>&nbsp;{{post.author}}</h6>  
                 </div>
                 <div id="loading"></div>
                 <div class="tags">
@@ -26,7 +28,7 @@
                 <img class="img-responsive" src="/media/{{ post.thumbnail }}" alt="image">
                 <div id="likes"><span class="glyphicon glyphicon-heart"></span>&nbsp;11</div>
                 <div id="date"><span class="glyphicon glyphicon-calendar"></span>{{post.date}}</div>
-            </div>         
+            </div>        
           </div>
         {% endfor %}
         </div>

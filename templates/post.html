@@ -1,5 +1,33 @@
 {% extends "base.html" %}
-
 {% block content %}
-	
+	<div class="col-lg-offset-3 col-lg-9">
+    <div id="bootlag">
+      <div class="col-lg-offset-1 col-lg-10" >
+        <div class="post">
+          <div id="header">
+              <h2>{{post.title}}</h2>
+              <h6><i>by</i>&nbsp;{{post.author}}</h6>  
+              <div class="tags">
+                {% for tag in post.tags.all %}
+                <span class="label label-default">{{ tag.tag }}</span>
+                {% endfor %}
+              </div>
+          </div>
+          <br>
+          <div id="likes">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;11
+          </div>
+          <div id="date"><span class="glyphicon glyphicon-calendar"></span>{{post.date}}</div> 
+          <div style="width: 100%; padding-top:3%;"></div>
+          <hr>
+          {{post.text|safe}}
+          <hr>
+          <div style="width: 100%; padding-top:5%;"></div>  
+          <div class="fb-like" data-layout="button" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+          <div style="right:0px;" class="fb-share-button" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Share</a></div>
+          <div class="fb-comments" data-href="" data-width="100%" data-numposts="5"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
