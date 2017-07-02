@@ -6,8 +6,17 @@ $content-hover: #515151;
 $post-content: #A0A0A0;
 $hover-border: #96C1EA;
 //$hover-border: #C5D5D8;
-$hover-content: #515151;
-$shadow: #999996;
+$shadow: #ddd;
+
+@font-face{
+  font-family: GT-Sectra;
+  src: url("fonts/GT-Sectra-Fine-Bold.ttf");
+}
+
+@font-face{
+  font-family: roboto;
+  src: url('fonts/Roboto-Regular.ttf');
+}
 
 /* The animation code */
 @keyframes example {
@@ -24,7 +33,7 @@ $shadow: #999996;
 
 @keyframes slideInFromBottom{
   0% {
-    transform:translateY(30%);
+    transform:translateY(50%);
     opacity:0;
   }
   100% {
@@ -62,12 +71,14 @@ $shadow: #999996;
 
 @keyframes scaleanimation{
   0%{
-    transform: scale(0,0);
+    transform: scale(1,1);
   }
   100%{
-    transform: scale(10, 10);
+    transform: scale(6, 6);
   }
 }
+
+
 
 *{
   padding:0;
@@ -77,29 +88,31 @@ $shadow: #999996;
 
 body{
   background-color:white;
+  font-family: roboto;
 }
 
 .row.content {height: 1500px}
-
-.scaletransition{
-  animation:scaleanimation 0.5s linear;
-}
 
 #dummy{
   position:absolute;
   z-index:9;
   width:100%;
   height:100%;
-  animation:scaleanimation .5s ease-in-out;
-  transform:scale(10,10);
-  background-color:gray;
+  box-shadow:0 0 50px $shadow;
+  animation:scaleanimation 0.5s cubic-bezier(.93,.05,.74,.74);
+  transform:scale(6,6);
+  background-color:white;
+}
+
+.boxshadow_removal{
+  box-shadow:none;
 }
 
 #bootlag{
-  right:0px;
+  right:0;
   width:100%;
   padding:0px;
-  padding-left:5%;
+  padding-left:4%;
 }
 
 #pageheader{
@@ -110,89 +123,98 @@ body{
 
 .postfeed{
   position:relative;
-  margin:10px;;
+  margin:10px;
   padding:0px;
-  padding-top:100%;
   width:auto;
   overflow:hidden;
-  box-shadow:0 0 15px $shadow;
+  box-shadow:0 0 10px $shadow;
   border:none;
   color:$content;
   text-align:center;
-  animation: example 0.5s ease-out 0s;
-    img{
-        position:absolute;
-        width:40%;
-        height:auto;
-        left:30%;
-        top:38%;
-    }
-    .tags{
-        position:absolute;
-        bottom:20%;
-        margin:auto;
-        width:100%;
-        padding-left:10%;
-        padding-right:10%;
-        text-align:center;
+  animation: example 0.5s ease-in-out;
+  &:hover, &:focus{
+    border:6px solid $hover-border;
+    box-shadow:none;
+    outline:none;
+    transition:border 0.2s;
+    #header, .tags{
+        color: $content-hover;
+        border-color: $content-hover;
         .label-default{
-          background-color:$content;
-          color:white;
-          }
-    }
-    #header{
-        position:absolute;
-        width:100%;
-        text-align:center;
-        top:10px;
-        padding-left:5%;
-        padding-right:5%;
-        h6{
-        padding-left:5%;
-        padding-right:5%;
+          background-color: $content-hover;
         }
     }
-    &:hover{
-          border:6px solid $hover-border;
-          box-shadow:none;
-          #header, .tags{
-              color: $hover-content;
-              border-color: $hover-content;
-              .label-default{
-                background-color: $hover-content;
-              }
-          }
-    } 
-    #loading{
-        position:absolute;
-        left:25%;
-        top:33%;
-        border-bottom: 4px solid $post-content;
-        width:50%;
-        height:2px;
-        margin:auto;
+  } 
+  img{
+    border:1px solid $content;
+    position:absolute;
+    height:40%;
+    width:auto;
+    max-width:80%;
+    max-height:40%;
+    top:40%;
+    left:0;
+    right:0;
+    margin:auto;
+  }
+  #header{
+    font-family:GT-Sectra;
+    position:absolute;
+    width:100%;
+    height:30%;
+    max-height:30%;
+    text-align:center;
+    top:0%;
+    padding:0;
+    padding-left:5%;
+    padding-right:5%;
+    h3{
+      position:relative;
+      margin-top:10%;
+      font-size:28px;
     }
-    #loadinganimation{
+    h6{
+      position:relative;
+      margin-bottom:0;
+      font-size:12px;
+      padding-left:5%;
+      padding-right:5%;
+    }
+  }
+  #loading{
       position:absolute;
-      z-index:1;
       left:25%;
       top:33%;
-      border-bottom: 4px solid $hover-border;
+      border: 2px solid $post-content;
+      border-radius:2px;
       width:50%;
       height:2px;
       margin:auto;
-      animation: loading 0.5s linear;
-    }
-    #likes{
-      position: absolute;      
-      bottom:20px;
-      right:20/280*100%;
-    }
-    #date{
-      position:absolute;
-      bottom:20px;
-      left:20/280*100%;
-    }
+  }
+  #loadinganimation{
+    position:absolute;
+    z-index:1;
+    left:25%;
+    top:33%;
+    border: 2px solid $hover-border;
+    border-radius:2px;
+    width:50%;
+    height:2px;
+    margin:auto;
+    animation: loading 0.5s cubic-bezier(.08,.79,.57,.5);
+  }
+  #likes{
+    position: absolute; 
+    font-size:12px;     
+    bottom:4%;
+    right:5%;
+  }
+  #date{
+    position:absolute;
+    bottom:4%;
+    font-size:12px;
+    left:5%;
+  }
 }
 
 #desktop-nav {
@@ -201,56 +223,114 @@ body{
   z-index:10;
   color: $content;
   height: 100%;
-  width:366/1280*100%;
+  width:350/1280*100%;
   position: fixed;
   span{
     color:$sidebar;
   }
   #sign{
     position:absolute;
-    top:50px;
+    font-face:GT-Sectra;
+    top:10%;
+    height:10%;
     width:100%;
+    h1{
+      font-size:40px;
+    }
     h1>a,h1>a:hover{
       color:$sarcblog;
       text-decoration: none;
       span{
         color:white;
       }
+      padding:0;
       padding-left:10%;
     }  
   }
   form{
     position:absolute;
-    top:130px;
-    padding-left:5%;
-    padding-right:5%;
+    font-size:16px;
+    top:20%;
+    height:7%;
+    padding:0;
+    padding-left:10%;
+    padding-right:10%;
+    border-bottom:0.3px solid white;
+    .btn{
+      border:1px solid $sidebar;
+      &:hover{
+        background-color:white;
+        border:1px solid $sidebar;
+        outline:none;
+        box-shadow:none;
+      }
+      &:active{
+        border:1px solid $sidebar;
+        outline:none;
+        box-shadow:none;
+      }
+    }
+    input{
+      border:1px solid $sidebar;
+      outline:none;
+      box-shadow:none;
+    }
   }
-  footer{
+  #about{
     position:absolute;
-    bottom:20px;
+    border-bottom:1px solid white;
+    top:33%;
+    padding:0;
+    height:40%;
+    width:100%;
+    p{
+      position:relative;
+      width:80%;
+      left:10%;
+      font-size:14px;
+      margin-bottom:0;
+    }
+    ul{
+      position:relative;
+      padding-top:10px;
+      left:15%;
+      width:75%;
+      list-style-type:dots;
+      font-size:12px;
+    }
+  }
+  #links{
+    position:absolute;
+    top:75%;
     left:10%;
-    padding:0px;
+    width:80%;
+    height:5%;
+    padding:0;
+    font-size:24px;
+    text-align:center;
     a{
+      padding:10px;
       color:$content;
       &:hover, &:focus{
       text-decoration:none;
       }
     }
   }
-  #sections{
+  footer{
     position:absolute;
-    top:150px;
+    font-size:10px;
+    bottom:1%;
+    height:auto;
     width:100%;
-    margin:0px;
-    padding:10%;
-    li>a{
+    border-top:1px solid white;
+    padding:0px;
+    padding-left:10%;
+    padding-top:2%;
+    a{
       color:$content;
-      text-decoration: none;
-      padding-left:0px;
-      &:hover{
-        color: $content-hover;
-        text-decoration:none;
-        background-color:$sidebar;
+      opacity:0.9;
+      &:hover, &:focus{
+      text-decoration:none;
       }
     }
   }
@@ -259,12 +339,12 @@ body{
 #mobile-nav{
   #button{
     position:fixed;  
-    z-index:10;
+    z-index:11;
+    top:10px;
+    left:10px;
     width:50px;
     height:50px;
     color:$content;
-    padding-top:10px;
-    padding-left:6px;
     .bar{
       border:2px solid $sidebar;
       margin:10%;
@@ -275,18 +355,25 @@ body{
   #panel{
     position:fixed;
     width:100%;
-    z-index:11;
-    left:0;
+    font-family:roboto;
+    z-index:12;
+    left:-100%;
     top:0;
     height:100%;
     background-color:$sidebar;
     color:$content;
+    transition:left 0.5s ease-in;
     #title{
       top:10%;
       padding:0;
-      margin-left:15%;
+      font-family:GT-Sectra;
+      width:100%;
+      height:10%;
+      padding:0;
+      padding-left:15%;
       position:absolute;
       h1{
+        font-size:28px;
         a,a:hover, a:visited, a:focus{
           text-decoration:none;
           color:$sarcblog;
@@ -296,97 +383,43 @@ body{
         }
       }
     }
-    ul{
-      list-style-type:none;
+    #search_button{
       position:absolute;
-      width:100%;
-      padding:13%;
-      top:20%;
-      li{
-        padding-left:5%;
-        padding-bottom:10%;
-        font-size:18px;
-        a{
-          color:$content;
-          &:visited, &:hover{
-            text-decoration:none;
-          }
-        }
-      }
-
-    }
-    #close{
-      position:absolute;;
-      left:10px;
-      top:10px;
-      span{
-        font-size:30px;
-      }
-    }
-    #footer{
-      position:absolute;
-      a{
-        color:$content;
-        &:visited, &:hover{
-          text-decoration:none;
-        }
-      }
-      width:100%;
-      bottom:0px;
-      padding:1%;
-    }
-  } 
-  #btn{
-      position:relative;
-      width:100%;
-      height:50px;
-      span{
-        position:absolute;
-        right:0;
-        margin: 4px 10px 4px;
-      }
-      color:$sidebar;
-      font-size:30px;
-    }
-  #search{
-    padding:0px;
-    z-index:10;
-    position:fixed;
-    top:0;
-    right:0;
-    width:100%;
-    height:100%;
-    background-color:$sidebar;
-    #cross{
-      position:absolute;
-      z-index:10;
+      right:16px;
+      top:16px;
+      padding:0;
+      border:1px solid black;
+      border:none;
       color:$content;
-      right:10px;
-      top:10px;
       span{
-        font-size:30px;
+        font-size:24px;
+      }
+      &:active{
+        border:none;
+        outline:none;
+        box-shadow:none;
       }
     }
     #form{
       position:fixed;
-      height:80%;
-      top: 0;
-      bottom: 0;
-      width:80%;
+      z-index:13;
+      background-color:$sidebar;
+      opacity:0;
+      height:100%;
+      width:100%;
+      top:0;
       left:0;
-      right:0; 
-      margin:auto;
       input{
         position: absolute;
-        height:50px;
-        width:80%;
+        height:30px;
+        width:70%;
         top:0;
         bottom:0;
         right:0;
         left:0;
         margin:auto;
         background-color:$sidebar;
-        font-size:30px;
+        font-size:24px;
         border:none;
         border-bottom:3px solid $sarcblog;
         outline:none; 
@@ -394,6 +427,105 @@ body{
           color:$sarcblog;
           text-decoration:none;
         }
+      }
+      #cross{
+        position:absolute;
+        right:16px;
+        top:16px;
+        padding:0;
+        span{
+          font-size:24px;
+        }
+      }
+    } 
+    #about{
+      position:absolute;
+      top:20%;
+      padding:0;
+      padding-top:5%;
+      height:50%;
+      width:100%;
+      p{
+        position:relative;
+        width:70%;
+        left:15%;
+        font-size:14px;
+        margin-bottom:0;
+      }
+      ul{
+        position:relative;
+        padding-top:10px;
+        left:20%;
+        width:65%;
+        list-style-type:dots;
+        font-size:12px;
+      }
+    }
+    #close{
+      position:absolute;
+      left:16px;
+      top:16px;
+      padding:0;
+      span{
+        font-size:24px;
+      }
+    }
+    #links{
+      position:absolute;
+      bottom:10%;
+      width:100%;
+      height:5%;
+      padding:0;
+      text-align:center;
+      font-size:18px;
+      a{
+        padding:10px;
+        color:$content;
+        &:hover, &:focus{
+        text-decoration:none;
+        }
+      }
+    }
+    footer{
+      position:absolute;
+      font-size:12px;
+      bottom:2%;
+      height:auto;
+      width:100%;
+      padding:0px;
+      padding-left:15%;
+      padding-top:2%;
+      a{
+        color:$content;
+        opacity:0.9;
+        &:visited, &:hover{
+          text-decoration:none;
+        }
+      }
+    }
+    
+  }
+  #head{
+    position:relative;
+    z-index:10;
+    top:0px;
+    height:53px;
+    text-align:right;
+    width:100%;
+    font-family:GT-Sectra;
+    padding-top:8px;
+    padding-right:10px;
+    a,a:hover, a:visited, a:focus{
+      position:relative;
+      top:0;
+      bottom:0;
+      height:50px;
+      margin:auto;
+      text-decoration:none;
+      color:$sarcblog;
+      font-size:30px;
+      span{
+        color:$sidebar;
       }
     }
   }
@@ -408,41 +540,81 @@ body{
 .post{
   position:relative;
   z-index:9;
-  padding-top:2%;
+  margin:auto;;
+  width:100%;
+  color:$content;
+  padding-top:5%;
   #header{
+    color:$content;
     text-align:center;
-    animation: slideInFromBottom 0.5s ease-in-out;
+    animation: slideInFromBottom 0.5s ease-out;
+    h5{
+      color:$content;
+      font-size:16px;
+    }
+    h2{
+      color:$sarcblog;
+      font-size:32px;
+    }
   }
   img{
-    border:1px solid black;
+    border:1px solid $content;
   }
   #likes{
+    color:$content;
     position:absolute;
     right:0;
     padding:2%;
-    animation: fade 0.5s ease-in-out;
+    opacity:0.8;
+    animation: fade 0.5s ease-out;
   }
   #date{
+    color:$content;
     position:absolute;
     left:0;
+    opacity:0.8;
     padding:2%;
-    animation: fade 0.5s ease-in-out;
+    animation: fade 0.5s ease-out;
   }
-  .tags{
-    position:relative;
-    left:0;
-    right:0;
-    width:60%;
-    margin:auto;
-    text-align:center;
-    span{
-      position:relative;
-      background-color:$content;
-      color:white;
-    } 
+  #text{
+    color:$content;
+    font-size:18px;
+    p{
+      text-align:justify;
+    }
+  }
+  .fb-like{
+    background-color:$sidebar;
   }
 }
 
+.fb-like{
+  position:relative;
+  top:0;
+  left:0;
+  opacity:1;
+}
+
+#like{
+  position: absolute;
+  left:0;
+  top:0; 
+  padding:0; 
+}
+
+.fb-share-button{
+  position:relative;
+  top:0;
+  left:0;
+  opacity:1;
+}
+
+#share{
+  position: absolute;
+  right:0;
+  top:0; 
+  padding:0; 
+}
 
 /* for desktops */
 @media only screen and (min-width: 1200px){
@@ -461,7 +633,7 @@ body{
     display: none;
   }
   #bootlag{
-    padding:0;
+    padding-left:0;
   }
   #mobile-nav{
     display: unset;

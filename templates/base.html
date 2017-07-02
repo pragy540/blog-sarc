@@ -1,15 +1,18 @@
 {% load staticfiles %}
+{%load static %}
 <!DOCTYPE html >
-<html lang="en" class="startup">
+<html lang="en" class="startup" prefix="og: http://ogp.me/ns#">
 <head>
   <title>SARC-Blog</title>
+  <link rel="icon" sizes="16x16" type="image/png" href="{% static 'icons/icon.png' %}">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}" >
-  <script src="{% static 'script.js' %}"></script>
+  <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}style.css" >
+  <script src="{{STATIC_URL}}script.js"></script>
+
   <!--fb comments plugin-->
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -21,34 +24,30 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" href="/media/icon.png"/>
-{% block script %}
-{% endblock %}
+  {% block script %}
+  {% endblock %}
   <script>  
     $(document).ready(function(){ 
       $(".postfeed").click(function(){
-            $("body").css({"color":"#999"});
-            $(this).prepend("<div id='loadinganimation'></div>");
-            $(this).children("#likes").fadeOut(500);
-            $(this).children("#date").fadeOut(500);
-            $(this).children("img").fadeOut(500);
-            $(this).delay(500).animate({border:'0px'},1000);
-            $(this).children(".tags").fadeOut(500);
-            $(this).children("#header").delay(500).animate({top:'-30px',opacity:'0'},500);
-            $(this).children("#loadinganimation").delay(500).fadeOut(500);
-            $(this).children("#loading").fadeOut(500);
-            var x = $(this).position();
-            $("#dummy").css({"top":x.top,"left":x.left});
-            var $postfeed = $(this);
-            var $link = $(this).children("a")[0];
-            setTimeout(function(){
-              $postfeed.before("<div id='dummy'></div>");
-              setTimeout(function(){$link.click();}, 800);
-              
-            }, 1000);  
+        $(this).addClass("boxshadow_removal");
+        $(this).prepend("<div id='loadinganimation'></div>");
+        $(this).delay(200).animate({"borderWidth":"0px"},100,"swing");
+        $(this).children("#likes").fadeOut(300);
+        $(this).children("#date").fadeOut(300);
+        $(this).children("img").fadeOut(300);
+        $(this).children("#header").delay(500).animate({top:'-70px',opacity:'0'},200,"swing");
+        $(this).children("#loadinganimation").delay(700).animate({top:'30px',opacity:'0'},200,"swing");
+        $(this).children("#loading").delay(600).fadeOut(0);
+        var x = $(this).position();
+        $("#dummy").css({"top":x.top,"left":x.left});
+        var $postfeed = $(this);
+        var $link = $(this).children("a")[0];
+        setTimeout(function(){
+          $postfeed.before("<div id='dummy'></div>");
+          setTimeout(function(){$link.click();}, 900);
+        }, 1000);  
+        $(".postfeed").off("click");
       });
       if({{section}}==1)
       {
@@ -84,33 +83,49 @@
     <div class="bar"></div>                     
   </div>
   <div id="panel">
-      <div id="close">
-        <span class="glyphicon glyphicon-remove"></span>
-      </div>
-      <div id="title"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
-      <ul id="sections_nav">
-      <!--        
-        <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
-        <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
-        <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
-        <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
-      -->
-      </ul>
-  </div>
-  <div id="btn">
-    <span class="glyphicon glyphicon-search"></span>
-  </div>
-  <div id="search">
-    <div id="cross">
-        <span class="glyphicon glyphicon-remove"></span>
+    <div id="close">
+      <span class="glyphicon glyphicon-remove"></span>
+    </div>
+    <div id="title"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
+    <div id="about" class="container-fluid">
+        <p align="justify">
+          The SARC blog is a platform for students and alumni to share their thoughts, ideas and memories. We don’t have a defined structure for the blog and prefer to keep it as an open canvas for creativity. Please contact the team if you wish to contribute to the blog. We would love to hear from you!
+          <ul>
+            <li>Karan (OC): mantrikaran@gmail.com</li>
+            <li>Tanay (Editor): tanaytirpude123@gmail.com</li>
+            <li>Anuradha (Editor): anuradhabadhe97@gmail.com</li>
+            <li>Tumul (Editor): tumulrai91@gmail.com</li>
+          </ul>
+        </p>
+    </div>
+    <div id="links" class="container-fluid">
+      <a href="https://www.facebook.com/SARC.IITB/" class="fa fa-facebook" target="_blank"></a>  
+      <a href="https://twitter.com/SARC_IITB" class="fa fa-twitter" target="_blank"></a> 
+      <a href="https://www.youtube.com/user/SARCIIT" class="fa fa-youtube" target="_blank"></a>  
+      <a href="https://www.linkedin.com/in/sarciitb/" class="fa fa-linkedin" target="_blank"></a>
+    </div>
+
+    <div id="search_button">
+      <span class="glyphicon glyphicon-search"></span>
     </div>
     <div id="form">
       <form method="post" action="{% url 'posts:index' %}">
           {% csrf_token %}
-          <input type="text" name="search" autofocus> 
+          <input id="#input" type="text" name="search" autocomplete="off"> 
       </form>
+      <div id="cross">
+        <span class="glyphicon glyphicon-remove"></span> 
+      </div>
     </div>
+
+    <footer class="container-fluid">
+      <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Made by Team Web and Design, SARC.</span></a>
+    </footer>
   </div>
+
+  <div id="head">
+    <a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a>
+  </div>  
 </div>
 
 
@@ -118,36 +133,36 @@
   <div class="row content">
     <div class="col-lg-4" style="padding:0;">
       <div id="desktop-nav" class="sidenav"">
-        <div id="sign"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
+        <div style="font-family: GT-Sectra;" id="sign"><h1><a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a></h1></div>
         <form method="post" action="{% url 'posts:index' %}">
           {% csrf_token %}
           <div class="input-group">
-            <input type="text" name="search" class="form-control search" placeholder="Search Blog..">
+            <input type="text" name="search" autocomplete="off" class="form-control search" placeholder="Search Blog..">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
+              <button class="btn btn-default" type="submit">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </span>
           </div>
-        </form>
-        <ul class="nav nav-pills nav-stacked" id="sections">
-<!--
-          <li><a href="{% url 'posts:hotc' %}">History of the Campus</a></li>
-          <li><a href="{% url 'posts:alumni_research' %}">Alumni and Research</a></li>
-          <li><a href="{% url 'posts:prof_interview' %}">Tete-a-tete with Professor</a></li>
-          <li><a href="{% url 'posts:kya' %}">Know your Alumni</a></li>
--->
-        </ul>
- 
-        <footer class="container-fluid">
+        </form> 
+        <div id="about" class="container-fluid">
+            <p align="justify">
+              The SARC blog is a platform for students and alumni to share their thoughts, ideas and memories. We don’t have a defined structure for the blog and prefer to keep it as an open canvas for creativity. Please contact the team if you wish to contribute to the blog. We would love to hear from you!
+              <ul>
+                <li>Karan (OC): mantrikaran@gmail.com</li>
+                <li>Tanay (Editor): tanaytirpude123@gmail.com</li>
+                <li>Anuradha (Editor): anuradhabadhe97@gmail.com</li>
+                <li>Tumul (Editor): tumulrai91@gmail.com</li>
+              </ul>
+            </p>
+        </div>
+        <div id="links" class="container-fluid">
           <a href="https://www.facebook.com/SARC.IITB/" class="fa fa-facebook" target="_blank"></a>  
           <a href="https://twitter.com/SARC_IITB" class="fa fa-twitter" target="_blank"></a> 
           <a href="https://www.youtube.com/user/SARCIIT" class="fa fa-youtube" target="_blank"></a>  
           <a href="https://www.linkedin.com/in/sarciitb/" class="fa fa-linkedin" target="_blank"></a>
-          @copyright is with SARC IITB.
-          <div style="width:100%; padding-top:2%; "></div>
-          <div style="width: 100%; padding-top:0.3%; background-color:#777777;"></div>
-          <div style="width:100%; padding-top:2%; "></div>
+        </div>
+        <footer class="container-fluid">
           <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Made by Team Web and Design, SARC.</span></a>
         </footer>
       </div>

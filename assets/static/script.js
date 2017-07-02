@@ -1,26 +1,21 @@
   $(document).ready(function(){
-    
-    $("#search").hide();
-    $("#panel").hide();
+  	$("#form").hide();
+
     $width = $(".postfeed").width();
     $(".postfeed").css("height",$width*5/4);
+
     $("#button").click(function(){
-      $("#panel").show();
+      $("#panel").css({"left":"0px"});
     });
     $("#close").click(function(){
-      $("#panel").hide();
+      $("#panel").css({"left":"-100%"});
     });
-    $("#btn").children("span").click(function(){
-      $("#search").show();
-      $("#search").find("input").focus();
+    $("#search_button").click(function(){
+    	$("#form").slideDown("fast");
+    	$("#form").css("opacity","1");
+      $("#form").autofocus();
     });
-
     $("#cross").click(function(){
-        $("#search").hide();
+    	$("#form").slideUp("fast");
     });
 });
-
-
-/*
-    
-*/

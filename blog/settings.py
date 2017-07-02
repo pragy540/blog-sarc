@@ -13,7 +13,7 @@ SECRET_KEY = '!iibn@d^=1(x(!s4=-(p4x2joz=ayh*u$6_k(q^@i8nb%gu4*k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.101','192.168.43.92','10.196.12.74', '10.196.4.100','localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['192.168.0.101','192.168.43.92','172.31.99.42','10.196.13.116', '10.196.4.100','localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
@@ -26,8 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'ckeditor',
-    'ckeditor_uploader',
-    'django_social_share'
+    'ckeditor_uploader'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +52,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -115,17 +116,21 @@ USE_TZ = True
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
-    'toolbar': 'full',
+    'toolbar': 'basic',
     'height': 400,
     'width': '100%',
     },
 }
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles' 
+STATIC_ROOT = os.path.join(BASE_DIR, "assets" , "static")
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "assets", "static"),
-)
+        os.path.join(BASE_DIR, "assets" , "main_static"),
+    )
+STATICFILES_FINDER = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "assets", "media")
