@@ -49,6 +49,14 @@
         }, 1000);  
         $(".postfeed").off("click");
       });
+      $("#search_button").click(function(){
+        $("#form").slideDown("fast");
+        $("#form").css("opacity","1");
+        $("#form").find('input').focus();
+      });
+      $("#cross").click(function(){
+        $('#form').slideUp("fast");
+      });
       if({{section}}==1)
       {
         $("#sections").children().first().children().addClass("active");
@@ -77,11 +85,27 @@
 <body>
 
 <div id="mobile-nav">
-  <div id="button">
-    <div class="bar"></div>   
-    <div class="bar"></div> 
-    <div class="bar"></div>                     
-  </div>
+  <div id="head">
+    <a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a>
+    <div id="button">
+      <div class="bar"></div>   
+      <div class="bar"></div> 
+      <div class="bar"></div>                     
+    </div>
+    <div id="search_button">
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
+    <div id="form">
+      <form method="post" action="{% url 'posts:index' %}">
+          {% csrf_token %}
+          <input autofocus type="text" name="search" autocomplete="off"/> 
+      </form>
+      <div id="cross">
+        <span class="glyphicon glyphicon-remove"></span> 
+      </div>
+    </div>
+  </div> 
+  <div id="after"></div>
   <div id="panel">
     <div id="close">
       <span class="glyphicon glyphicon-remove"></span>
@@ -90,12 +114,15 @@
     <div id="about" class="container-fluid">
         <p align="justify">
           The SARC blog is a platform for students and alumni to share their thoughts, ideas and memories. We don’t have a defined structure for the blog and prefer to keep it as an open canvas for creativity. Please contact the team if you wish to contribute to the blog. We would love to hear from you!
-          <ul>
+          <br>
+          <br>
+          <p align="right">-&nbsp;<a href="http://sarc-iitb.org/#/student/ourteam" target="_blank">Our Team</a>.</p>
+          <!--<ul>
             <li>Karan (OC): mantrikaran@gmail.com</li>
             <li>Tanay (Editor): tanaytirpude123@gmail.com</li>
             <li>Anuradha (Editor): anuradhabadhe97@gmail.com</li>
             <li>Tumul (Editor): tumulrai91@gmail.com</li>
-          </ul>
+          </ul-->
         </p>
     </div>
     <div id="links" class="container-fluid">
@@ -105,27 +132,10 @@
       <a href="https://www.linkedin.com/in/sarciitb/" class="fa fa-linkedin" target="_blank"></a>
     </div>
 
-    <div id="search_button">
-      <span class="glyphicon glyphicon-search"></span>
-    </div>
-    <div id="form">
-      <form method="post" action="{% url 'posts:index' %}">
-          {% csrf_token %}
-          <input id="#input" type="text" name="search" autocomplete="off"> 
-      </form>
-      <div id="cross">
-        <span class="glyphicon glyphicon-remove"></span> 
-      </div>
-    </div>
-
     <footer class="container-fluid">
-      <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Made by Team Web and Design, SARC.</span></a>
+      <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Created by Web and Design Team, SARC.</span></a>
     </footer>
-  </div>
-
-  <div id="head">
-    <a href="{% url 'posts:index' %}">S<span>A</span>RC BLOG</a>
-  </div>  
+  </div> 
 </div>
 
 
@@ -148,12 +158,15 @@
         <div id="about" class="container-fluid">
             <p align="justify">
               The SARC blog is a platform for students and alumni to share their thoughts, ideas and memories. We don’t have a defined structure for the blog and prefer to keep it as an open canvas for creativity. Please contact the team if you wish to contribute to the blog. We would love to hear from you!
-              <ul>
+              <br>
+              <br>
+              <p align="right">-&nbsp;<a href="http://sarc-iitb.org/#/student/ourteam" target="_blank">Our Team</a>.</p>
+              <!--ul>
                 <li>Karan (OC): mantrikaran@gmail.com</li>
                 <li>Tanay (Editor): tanaytirpude123@gmail.com</li>
                 <li>Anuradha (Editor): anuradhabadhe97@gmail.com</li>
                 <li>Tumul (Editor): tumulrai91@gmail.com</li>
-              </ul>
+              </ul-->
             </p>
         </div>
         <div id="links" class="container-fluid">
@@ -163,7 +176,7 @@
           <a href="https://www.linkedin.com/in/sarciitb/" class="fa fa-linkedin" target="_blank"></a>
         </div>
         <footer class="container-fluid">
-          <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Made by Team Web and Design, SARC.</span></a>
+          <a href="https://www.facebook.com/mrinal.dharmik" target="_blank"><span style="color:inherit;">Created by Web and Design Team, SARC.</span></a>
         </footer>
       </div>
     </div>

@@ -177,12 +177,17 @@ body {
     width: 100%; }
     #desktop-nav #sign h1 {
       font-size: 40px; }
-    #desktop-nav #sign h1 > a, #desktop-nav #sign h1 > a:hover {
+    #desktop-nav #sign h1 > a {
       color: #6D6D6D;
       text-decoration: none;
       padding: 0;
-      padding-left: 10%; }
-      #desktop-nav #sign h1 > a span, #desktop-nav #sign h1 > a:hover span {
+      padding-left: 10%;
+      transition: opacity .2s ease-in-out; }
+      #desktop-nav #sign h1 > a:hover {
+        color: #6D6D6D;
+        text-decoration: none;
+        opacity: .8; }
+      #desktop-nav #sign h1 > a span {
         color: white; }
   #desktop-nav form {
     position: absolute;
@@ -221,6 +226,12 @@ body {
       left: 10%;
       font-size: 14px;
       margin-bottom: 0; }
+    #desktop-nav #about a {
+      color: inherit;
+      text-decoration: none; }
+      #desktop-nav #about a:hover {
+        text-decoration: underline;
+        color: #6D6D6D; }
     #desktop-nav #about ul {
       position: relative;
       padding-top: 10px;
@@ -239,9 +250,12 @@ body {
     text-align: center; }
     #desktop-nav #links a {
       padding: 10px;
-      color: #777777; }
+      color: #777777;
+      transition: opacity 0.2s ease-in-out; }
       #desktop-nav #links a:hover, #desktop-nav #links a:focus {
         text-decoration: none; }
+      #desktop-nav #links a:hover {
+        opacity: 0.7; }
   #desktop-nav footer {
     position: absolute;
     font-size: 10px;
@@ -254,65 +268,63 @@ body {
     padding-top: 2%; }
     #desktop-nav footer a {
       color: #777777;
-      opacity: 0.9; }
+      opacity: 0.9;
+      transition: opacity 0.2s ease-in-out; }
       #desktop-nav footer a:hover, #desktop-nav footer a:focus {
-        text-decoration: none; }
-
-#mobile-nav #button {
-  position: fixed;
-  z-index: 11;
-  top: 10px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  color: #777777; }
-  #mobile-nav #button .bar {
-    border: 2px solid #C5D5D8;
-    margin: 10%;
-    height: 0px;
-    width: 30px; }
-#mobile-nav #panel {
-  position: fixed;
-  width: 100%;
-  font-family: roboto;
-  z-index: 12;
-  left: -100%;
-  top: 0;
-  height: 100%;
-  background-color: #C5D5D8;
-  color: #777777;
-  transition: left 0.5s ease-in; }
-  #mobile-nav #panel #title {
-    top: 10%;
-    padding: 0;
-    font-family: GT-Sectra;
-    width: 100%;
-    height: 10%;
-    padding: 0;
-    padding-left: 15%;
-    position: absolute; }
-    #mobile-nav #panel #title h1 {
-      font-size: 28px; }
-      #mobile-nav #panel #title h1 a, #mobile-nav #panel #title h1 a:hover, #mobile-nav #panel #title h1 a:visited, #mobile-nav #panel #title h1 a:focus {
         text-decoration: none;
-        color: #6D6D6D; }
-        #mobile-nav #panel #title h1 a span, #mobile-nav #panel #title h1 a:hover span, #mobile-nav #panel #title h1 a:visited span, #mobile-nav #panel #title h1 a:focus span {
-          color: white; }
-  #mobile-nav #panel #search_button {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    padding: 0;
-    border: 1px solid black;
-    border: none;
+        opacity: 0.7; }
+
+#mobile-nav #head {
+  position: fixed;
+  background-color: white;
+  box-shadow: 0 1px 1px 0 #eee;
+  z-index: 10;
+  top: 0px;
+  height: 53px;
+  text-align: center;
+  width: 100%;
+  font-family: GT-Sectra;
+  padding-top: 10px;
+  padding-right: 0px; }
+  #mobile-nav #head #button {
+    position: fixed;
+    z-index: 11;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
     color: #777777; }
-    #mobile-nav #panel #search_button span {
-      font-size: 24px; }
-    #mobile-nav #panel #search_button:active {
+    #mobile-nav #head #button .bar {
+      border: 2px solid #C5D5D8;
+      margin: 10%;
+      height: 0px;
+      width: 30px; }
+  #mobile-nav #head a {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: 40px;
+    margin: auto;
+    text-decoration: none;
+    color: #6D6D6D;
+    font-size: 28px; }
+    #mobile-nav #head a span {
+      color: #C5D5D8; }
+    #mobile-nav #head a:hover, #mobile-nav #head a:focus {
+      opacity: 0.8; }
+  #mobile-nav #head #search_button {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    padding: 0;
+    color: #C5D5D8; }
+    #mobile-nav #head #search_button span {
+      font-size: 26px; }
+    #mobile-nav #head #search_button:active {
       border: none;
       outline: none;
       box-shadow: none; }
-  #mobile-nav #panel #form {
+  #mobile-nav #head #form {
     position: fixed;
     z-index: 13;
     background-color: #C5D5D8;
@@ -321,8 +333,10 @@ body {
     width: 100%;
     top: 0;
     left: 0; }
-    #mobile-nav #panel #form input {
+    #mobile-nav #head #form input {
       position: absolute;
+      font-family: roboto;
+      z-index: 15;
       height: 30px;
       width: 70%;
       top: 0;
@@ -335,16 +349,51 @@ body {
       border: none;
       border-bottom: 3px solid #6D6D6D;
       outline: none; }
-      #mobile-nav #panel #form input:focus {
+      #mobile-nav #head #form input:focus {
         color: #6D6D6D;
         text-decoration: none; }
-    #mobile-nav #panel #form #cross {
+    #mobile-nav #head #form #cross {
       position: absolute;
       right: 16px;
       top: 16px;
       padding: 0; }
-      #mobile-nav #panel #form #cross span {
+      #mobile-nav #head #form #cross span {
         font-size: 24px; }
+#mobile-nav #after {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 53px; }
+#mobile-nav #panel {
+  position: fixed;
+  width: 100%;
+  font-family: roboto;
+  z-index: 12;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  background-color: #C5D5D8;
+  color: #777777;
+  transition: left 0.3s ease-out; }
+  #mobile-nav #panel #title {
+    top: 10%;
+    padding: 0;
+    font-family: GT-Sectra;
+    width: 100%;
+    height: 10%;
+    padding: 0;
+    padding-left: 15%;
+    position: absolute; }
+    #mobile-nav #panel #title h1 {
+      font-size: 28px; }
+      #mobile-nav #panel #title h1 a {
+        text-decoration: none;
+        color: #6D6D6D; }
+        #mobile-nav #panel #title h1 a span {
+          color: white; }
+        #mobile-nav #panel #title h1 a:hover, #mobile-nav #panel #title h1 a:focus {
+          opacity: .8; }
   #mobile-nav #panel #about {
     position: absolute;
     top: 20%;
@@ -365,6 +414,12 @@ body {
       width: 65%;
       list-style-type: dots;
       font-size: 12px; }
+    #mobile-nav #panel #about a {
+      color: inherit;
+      text-decoration: none; }
+      #mobile-nav #panel #about a:hover {
+        text-decoration: underline;
+        color: #6D6D6D; }
   #mobile-nav #panel #close {
     position: absolute;
     left: 16px;
@@ -374,7 +429,7 @@ body {
       font-size: 24px; }
   #mobile-nav #panel #links {
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     width: 100%;
     height: 5%;
     padding: 0;
@@ -384,7 +439,8 @@ body {
       padding: 10px;
       color: #777777; }
       #mobile-nav #panel #links a:hover, #mobile-nav #panel #links a:focus {
-        text-decoration: none; }
+        text-decoration: none;
+        opacity: 0.7; }
   #mobile-nav #panel footer {
     position: absolute;
     font-size: 12px;
@@ -398,28 +454,8 @@ body {
       color: #777777;
       opacity: 0.9; }
       #mobile-nav #panel footer a:visited, #mobile-nav #panel footer a:hover {
-        text-decoration: none; }
-#mobile-nav #head {
-  position: relative;
-  z-index: 10;
-  top: 0px;
-  height: 53px;
-  text-align: right;
-  width: 100%;
-  font-family: GT-Sectra;
-  padding-top: 8px;
-  padding-right: 10px; }
-  #mobile-nav #head a, #mobile-nav #head a:hover, #mobile-nav #head a:visited, #mobile-nav #head a:focus {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    height: 50px;
-    margin: auto;
-    text-decoration: none;
-    color: #6D6D6D;
-    font-size: 30px; }
-    #mobile-nav #head a span, #mobile-nav #head a:hover span, #mobile-nav #head a:visited span, #mobile-nav #head a:focus span {
-      color: #C5D5D8; }
+        text-decoration: none;
+        opacity: 0.7; }
 
 .active {
   font-weight: bold;
