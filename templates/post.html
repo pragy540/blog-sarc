@@ -2,8 +2,8 @@
 {% block meta %}
   <meta property="og:title" content="{{post.title}}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="www.blog.sarc-iitb.org{% url 'posts:post' post.slug %}" />
-  <meta property="og:image" content="www.blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
+  <meta property="og:url" content="http://blog.sarc-iitb.org{% url 'posts:post' post.slug %}" />
+  <meta property="og:image" content="http://blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
   <meta property="og:description" content="{{ post.text|safe|striptags|truncatechars:250 }}" />
   <meta property="og:site_name" content="SARC-Blog"/>
 {% endblock %}
