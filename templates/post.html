@@ -10,8 +10,8 @@
   <meta property="og:title" content="{{post.title}}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="" />
-  <meta property="og:image" content="{{ post.thumbnail }}" />
-  <meta property="og:description" content="{{ post.text|safe }}">
+  <meta property="og:image" content="www.blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
+  <meta property="og:description" content="{{ post.text|safe|striptags|truncatechars:50 }}">
   <meta property="og:site_name" content="SARC-Blog"/>
 {% endblock %}
 
