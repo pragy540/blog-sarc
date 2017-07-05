@@ -4,8 +4,6 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from customutils.customfields import ContentTypeRestrictedFileField as RestFileField
 
-from django.template.defaultfilters import slugify
-
 
 class Section(models.Model):
 	section = models.CharField(max_length=50)
@@ -21,6 +19,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
 	title = models.CharField(max_length = 200, blank = False)
+	slug = models.SlugField(max_length = 200)
 	author = models.CharField(max_length = 100, blank = False)
 	date = models.DateField(blank = False)
 	text = RichTextUploadingField(config_name = 'awesome_ckeditor', blank = True)
@@ -30,7 +29,6 @@ class Post(models.Model):
                              upload_to="thumbnail-photo", default = '')
 	likes = models.PositiveIntegerField(blank=True, default = 0)
 	readtime = models.PositiveIntegerField(blank=False, default = 3)		
-	slug = models.SlugField(max_length = 200)
 	
 	def get_tags(self):
 		return ', '.join([elem.tag for elem in self.tags.all()])

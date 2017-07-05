@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+
+{% block meta %}
+  <meta property="og:title" content="SARC-Blog" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="{{STATIC_URL}}icons/icon.png" />
+  <meta property="og:site_name" content="SARC-Blog"/>
+{% endblock %}
 {% block content %}
     <div id="#dummy">
     </div>

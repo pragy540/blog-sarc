@@ -23,7 +23,7 @@ def paginator_x(all_posts,request):
 	return posts
 
 def search_function(string):
-	posts_qs = Post.objects.all().filter(Q(tags__tag__icontains = string)|Q(title__icontains = string)|Q(author__icontains = string))
+	posts_qs = Post.objects.all().filter(Q(tags__tag__icontains = string)|Q(title__icontains = string)|Q(author__icontains = string)).distinct()
 	return posts_qs
 
 
