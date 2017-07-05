@@ -14,7 +14,7 @@
         {% for post in all_posts %}
           <div class="col-lg-4 col-sm-6 col-md-4" style="padding:0;margin:0;">
             <div class="postfeed" tabindex="0">
-              <a href="{% url 'posts:post' post.pk %}"></a> 
+              <a href="{% url 'posts:post' post.slug %}"></a> 
                 <div id="header">
                     <h3>{{post.title}}</h3>
                     <h6 style="font-family:roboto;"><i>by</i>&nbsp;{{post.author}}</h6>  
