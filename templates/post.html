@@ -1,17 +1,10 @@
 {% extends "base.html" %}
-{% block script %}
-  <meta property="og:title" content="{{post.title}}" />
-  <meta property="og:type" content="blog" />
-  <meta property="og:url" content="" />
-  <meta property="og:image" content="{{post.thumbnail}}" />
-{% endblock %}
-
 {% block meta %}
   <meta property="og:title" content="{{post.title}}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="" />
+  <meta property="og:url" content="www.blog.sarc-iitb.org{% url 'posts:post' post.slug %}" />
   <meta property="og:image" content="www.blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
-  <meta property="og:description" content="{{ post.text|safe|striptags|truncatechars:50 }}">
+  <meta property="og:description" content="{{ post.text|safe|striptags|truncatechars:250 }}" />
   <meta property="og:site_name" content="SARC-Blog"/>
 {% endblock %}
 
