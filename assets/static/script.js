@@ -35,4 +35,7 @@
     $("#cross").click(function(){
       $('#form').slideUp("fast");
     });
+    $("#dropdown").click(function(){
+      $(this).children("a")[0].click();
+    });
 });

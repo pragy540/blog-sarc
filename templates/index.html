@@ -7,55 +7,60 @@
   <meta property="og:image" content="http://blog.sarc-iitb.org{{MEDIA_URL}}icon.png" />
   <meta property="og:site_name" content="SARC BLOG"/>
 {% endblock %}
+
 {% block content %}
-    <div id="#dummy">
+  <div id="#dummy">
+  </div>
+  <div class="col-lg-offset-3 col-lg-9 col-md-12 col-sm-12">
+    <div id="bootlag" class="container-fluid">
+      <div id="pageheader">
+        <div>{{filter}} Articles</div>
+        <div id="dropdown">
+          <a href="{% url 'posts:sortby'%}"> 
+            Sort By: 
+            <span style="color:#96C1EA;">
+              {{filter}}
+              <span style="position:relative;top:2px;" class="glyphicon glyphicon-triangle-bottom"></span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <br>
+      <br>
+      {% for post in all_posts %}
+        <div class="col-lg-4 col-sm-6 col-md-4" style="padding:0;margin:0;">
+          <div class="postfeed" tabindex="0">
+            <a href="{% url 'posts:post' post.slug %}"></a> 
+              <div id="header">
+                  <h3>{{post.title}}</h3>
+                  <h6 style="font-family:roboto;"><i>by</i>&nbsp;{{post.author}}</h6>  
+              </div>
+              <div id="loading"></div>
+              <img class="img-responsive" src="/media/{{ post.thumbnail }}" alt="image">
+              <div id="likes"><span class="glyphicon glyphicon-time"></span>&nbsp;{{post.readtime}}&nbsp;min</div>
+              <div id="date"><span class="glyphicon glyphicon-calendar"></span>&nbsp;{{post.date}}</div>
+          </div>        
+        </div>
+      {% endfor %}
+      <div id="pageturner" class="col-lg-12">
+        <ul class="pager">
+          {% if all_posts.has_previous %}
+          <li class="previous"><a href="?page={{ all_posts.previous_page_number }}">Previous</a></li>
+          {% endif %}
+          {% if all_posts.has_next %}
+          <li class="next"><a href="?page={{ all_posts.next_page_number }}">Next</a></li>
+          {% endif %}
+        </ul>
+      </div> 
     </div>
-    <div class="col-lg-offset-3 col-lg-9 col-md-12 col-sm-12">
-        <div id="bootlag" class="container-fluid">
-        <div id="pageheader">
-          <div>Latest Articles</div>
-          <div style="position:absolute;top:6px;right:25px;">Sort By: <span style="color:#96C1EA;">Popularity&nbsp;<span class="glyphicon glyphicon-triangle-bottom"></span></span>
-        </div>
-        </div>
-        <br>
-        <br>
-        {% for post in all_posts %}
-          <div class="col-lg-4 col-sm-6 col-md-4" style="padding:0;margin:0;">
-            <div class="postfeed" tabindex="0">
-              <a href="{% url 'posts:post' post.slug %}"></a> 
-                <div id="header">
-                    <h3>{{post.title}}</h3>
-                    <h6 style="font-family:roboto;"><i>by</i>&nbsp;{{post.author}}</h6>  
-                </div>
-                <div id="loading"></div>
-                <img class="img-responsive" src="/media/{{ post.thumbnail }}" alt="image">
-                <div id="likes"><span class="glyphicon glyphicon-heart"></span>&nbsp;{{post.likes}}</div>
-                <div id="date"><span class="glyphicon glyphicon-calendar"></span>{{post.date}}</div>
-            </div>        
-          </div>
-        {% endfor %}
-        </div>
-    </div>
+  </div>
 {% endblock %}
 
 
 <!--
-    <div id="pageturner">
-      <ul class="pager">
-        {% if all_posts.has_previous %}
-        <li class="previous"><a href="?page={{ all_posts.previous_page_number }}">newer posts</a></li>
-        {% endif %}
-        {% if all_posts.has_next %}
-        <li class="next"><a href="?page={{ all_posts.next_page_number }}">older posts</a></li>
-        {% endif %}
-      </ul>
-    </div> 
     <div class="tags">
       {% for tag in post.tags.all %}
       <span class="label label-default">{{ tag.tag }}</span>
       {% endfor %}
     </div>
-
-
-
 -->

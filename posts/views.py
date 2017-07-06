@@ -7,10 +7,12 @@ from django.db.models import Q
 
 from django.template.defaultfilters import slugify
 
+sortchoice = 'Latest'
+
 # Create your views here.
 
 def paginator_x(all_posts,request):
-	paginator = Paginator(all_posts,10)
+	paginator = Paginator(all_posts,1)
 	page = request.GET.get('page')
 	try:
 		posts = paginator.page(page)
@@ -26,23 +28,38 @@ def search_function(string):
 	posts_qs = Post.objects.all().filter(Q(tags__tag__icontains = string)|Q(title__icontains = string)|Q(author__icontains = string)).distinct()
 	return posts_qs
 
-
-
 def index(request):
 	if request.method == "GET":
-		all_posts = Post.objects.all()
-		#posts = paginator_x(all_posts,request)
-		return render(request, 'index.html',{'all_posts':all_posts})
+		if sortchoice == "Latest": 
+			all_posts = Post.objects.all().order_by('-views')
+		else:
+			all_posts = Post.objects.all()
+		#all_posts = paginator_x(all_posts,request)
+		return render(request, 'index.html',{'all_posts':all_posts,'filter': sortchoice})
 	elif request.method == "POST":
 		search_str = request.POST.get("search")
 		search_posts = search_function(search_str)
 		if not search_posts:
 			return render(request, 'search.html',{})
 		else:
-			return render(request, 'index.html',{'all_posts':search_posts})
+			return render(request, 'index.html',{'all_posts':search_posts,'filter': sortchoice})
+
+def sortby(request):
+	if request.method == "GET":
+		global sortchoice
+		if sortchoice == "Latest":
+			sortchoice = "Popular"
+			all_posts = Post.objects.all().order_by('-views')
+		else:
+			sortchoice = "Latest"
+			all_posts = Post.objects.all()
+		#all_posts = paginator_x(all_posts,request)
+		return render(request, 'index.html',{'all_posts':all_posts,'filter':sortchoice})
 
 def post(request, url):
     post = Post.objects.get(slug = slugify(url))
+    post.views +=1;
+    post.save();
     return render(request, 'post.html', {'post':post})
 
 

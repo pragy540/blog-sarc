@@ -74,6 +74,16 @@ body {
   margin: 6px;
   margin-bottom: 0px;
   color: #777777; }
+  #pageheader #dropdown {
+    position: absolute;
+    top: 6px;
+    right: 25px; }
+    #pageheader #dropdown a {
+      text-decoration: none;
+      color: #777777;
+      transition: opacity 0.1s ease-in-out; }
+      #pageheader #dropdown a:hover {
+        opacity: 0.8; }
 
 .postfeed {
   position: relative;
@@ -509,6 +519,14 @@ body {
     right: 0;
     top: 0;
     padding: 0; }
+
+#pageturner {
+  position: relative;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: auto;
+  bottom: 0px; }
 
 /* for desktops */
 @media only screen and (min-width: 1200px) {
