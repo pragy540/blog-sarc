@@ -122,10 +122,18 @@ body{
     top:6px;
     right:25px;
     .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-      background-color: white !important;
+      background-color: white;
       color:$hover-border;
       border:none;
       outline:none;
+    }
+    .dropdown-menu{
+      padding:0;
+      min-width:30px;
+      right:0;
+      li{
+        padding:0;
+      }
     }
     span{
       transform:scale(1.5,1.5);

@@ -79,10 +79,16 @@ body {
     top: 6px;
     right: 25px; }
     #pageheader #dropdown .btn-primary, #pageheader #dropdown .btn-primary:hover, #pageheader #dropdown .btn-primary:active, #pageheader #dropdown .btn-primary:visited {
-      background-color: white !important;
+      background-color: white;
       color: #96C1EA;
       border: none;
       outline: none; }
+    #pageheader #dropdown .dropdown-menu {
+      padding: 0;
+      min-width: 30px;
+      right: 0; }
+      #pageheader #dropdown .dropdown-menu li {
+        padding: 0; }
     #pageheader #dropdown span {
       transform: scale(1.5, 1.5); }
     #pageheader #dropdown a {
