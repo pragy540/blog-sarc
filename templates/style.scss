@@ -121,7 +121,7 @@ body{
     position:absolute;
     top:6px;
     right:25px;
-    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    button{
       background-color: white;
       color:$hover-border;
       border:none;

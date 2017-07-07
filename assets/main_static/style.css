@@ -78,7 +78,7 @@ body {
     position: absolute;
     top: 6px;
     right: 25px; }
-    #pageheader #dropdown .btn-primary, #pageheader #dropdown .btn-primary:hover, #pageheader #dropdown .btn-primary:active, #pageheader #dropdown .btn-primary:visited {
+    #pageheader #dropdown button {
       background-color: white;
       color: #96C1EA;
       border: none;
