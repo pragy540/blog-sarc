@@ -25,7 +25,7 @@ class Post(models.Model):
 	text = RichTextUploadingField(config_name = 'awesome_ckeditor', blank = True)
 	section = models.ForeignKey(Section, blank = False)
 	tags = models.ManyToManyField(Tag, blank = False)
-	thumbnail = RestFileField(content_types=['image/jpeg', 'image/png'], max_upload_size=4194304,
+	thumbnail = RestFileField(content_types=['image/jpeg', 'image/png'], max_upload_size=2000000,
                              upload_to="thumbnail-photo", default = '')
 	views = models.PositiveIntegerField(blank=True, default = 0)
 	readtime = models.PositiveIntegerField(blank=False, default = 3)		
