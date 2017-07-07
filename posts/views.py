@@ -49,7 +49,7 @@ def old(request):
 	if request.method == "GET":
 		all_posts = Post.objects.all().reverse()
 		#all_posts = paginator_x(all_posts,request)
-		return render(request, 'index.html',{'all_posts':all_posts,'filter':'Old'})
+		return render(request, 'index.html',{'all_posts':all_posts,'filter':'Oldest'})
 
 def post(request, url):
     post = Post.objects.get(slug = slugify(url))

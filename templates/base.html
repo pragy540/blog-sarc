@@ -4,7 +4,6 @@
 <html lang="en" class="startup" prefix="og: http://ogp.me/ns#">
 <head>
   <title>SARC BLOG</title>
-  <link rel="icon" sizes="16x16" type="image/png" href="{{MEDIA_URL}}titleicon.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block meta %}
@@ -12,9 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="{{STATIC_URL}}style.css" >
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="{{STATIC_URL}}script.js"></script>
+  <link rel="icon" sizes="16x16" type="image/png" href="{{MEDIA_URL}}titleicon.png">
 </head>
 <body>
 <div id="mobile-nav">
@@ -115,6 +112,9 @@
   {% endblock %}
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{STATIC_URL}}script.js"></script>
 {% block script %}
 {% endblock %}
 </body>
