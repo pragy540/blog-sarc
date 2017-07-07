@@ -78,6 +78,8 @@ body {
     position: absolute;
     top: 6px;
     right: 25px; }
+    #pageheader #dropdown button {
+      background-color: #C5D5D8; }
     #pageheader #dropdown a {
       text-decoration: none;
       color: #777777;

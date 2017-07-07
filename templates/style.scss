@@ -121,6 +121,15 @@ body{
     position:absolute;
     top:6px;
     right:25px;
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+      background-color: white !important;
+      color:$hover-border;
+      border:none;
+      outline:none;
+    }
+    span{
+      transform:scale(1.5,1.5);
+    }
     a{
       text-decoration:none;
       color:$content;

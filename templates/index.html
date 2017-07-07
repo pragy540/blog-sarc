@@ -16,13 +16,15 @@
       <div id="pageheader">
         <div>{{filter}} Articles</div>
         <div id="dropdown">
-          <a href="{% url 'posts:sortby'%}"> 
-            Sort By: 
-            <span style="color:#96C1EA;">
-              {{filter}}
-              <span style="position:relative;top:2px;" class="glyphicon glyphicon-triangle-bottom"></span>
-            </span>
-          </a>
+          Sort By: 
+          <button class="btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            {{filter}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'posts:index' %}">Latest</a></li>
+            <li><a href="{% url 'posts:popular' %}">Popular</a></li>
+          </ul>
         </div>
       </div>
       <br>
