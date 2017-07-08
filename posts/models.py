@@ -4,6 +4,12 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from customutils.customfields import ContentTypeRestrictedFileField as RestFileField
 
+class Stats(models.Model):
+	name = models.CharField(max_length = 20)
+	hits = models.BigIntegerField(blank = True, default = 0)
+
+	def __unicode__(self):
+		return str(self.hits)
 
 class Section(models.Model):
 	section = models.CharField(max_length=50)
@@ -27,8 +33,9 @@ class Post(models.Model):
 	tags = models.ManyToManyField(Tag, blank = False)
 	thumbnail = RestFileField(content_types=['image/jpeg', 'image/png'], max_upload_size=102400,
                              upload_to="thumbnail-photo", default = '')
-	views = models.PositiveIntegerField(blank=True, default = 0)
-	readtime = models.PositiveIntegerField(blank=False, default = 3)		
+	views = models.BigIntegerField(blank=True, default = 0)
+	readtime = models.PositiveIntegerField(blank=False, default = 3)
+	published = models.BooleanField(default = False)		
 	
 	def get_tags(self):
 		return ', '.join([elem.tag for elem in self.tags.all()])

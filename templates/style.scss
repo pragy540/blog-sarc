@@ -678,7 +678,7 @@ body{
     position:relative;
     color:$content;
     text-align:center;
-    animation: slideInFromBottom 0.5s ease-out 0.2s;
+    animation: slideInFromBottom 0.7s cubic-bezier(.39,-0.58,1,-0.19);
     h5{
       color:$content;
       font-size:16px;
