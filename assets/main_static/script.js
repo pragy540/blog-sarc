@@ -17,7 +17,10 @@ $(document).ready(function(){
     var $link = $(this).children("a")[0];
     setTimeout(function(){
       $postfeed.before("<div id='dummy'></div>");
-      setTimeout(function(){$link.click();}, 900);
+      setTimeout(function(){
+        $("body").children("a")[0].click();
+        $link.click();
+      }, 900);
     }, 1000);  
     $(".postfeed").off("click");
   });
