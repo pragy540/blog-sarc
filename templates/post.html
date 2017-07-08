@@ -22,8 +22,13 @@
 {% block content %}
 	<div class="col-lg-offset-3 col-lg-9">
     <div id="bootlag" class="container-fluid">
-      <div class="col-lg-offset-1 col-lg-10" style="padding: 0;">
+      <div class="col-lg-offset-1 col-lg-10">
         <div class="post">
+          <div id="close_post">
+            <a href="{% url 'posts:index' %}">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </div>
           <div id="header">
               <h2 style="font-family: GT-Sectra;">{{post.title}}</h2>
               <h5><i>by</i>&nbsp;{{post.author}}</h5>  
@@ -38,6 +43,28 @@
           <div style="width: 100%; padding-top:3%;"></div>
           <hr>
           <div id="text" style="font-family: roboto;">{{post.text|safe}}</div>
+          <hr>
+          <div class="container-fluid">
+            <div id="editors" class="col-lg-12">
+              <h4>Editorial Board</h4>
+            </div>
+            <div class="circle col-lg-3 col-xs-6">
+              <div><img src="{{MEDIA_URL}}team/karan.png"></div>
+              <h5>Karan Mantri</h5>
+            </div>
+            <div class="circle col-lg-3 col-xs-6">
+              <div><img src="{{MEDIA_URL}}team/karan.png"></div>
+              <h5>Tanay Tirpudhe</h5>
+            </div>
+            <div class="circle col-lg-3 col-xs-6">
+              <div><img src="{{MEDIA_URL}}team/karan.png"></div>
+              <h5>Anuradha Badhe</h5>
+            </div>
+            <div class="circle col-lg-3 col-xs-6">
+              <div><img src="{{MEDIA_URL}}team/karan.png"></div>
+              <h5>Tumul Rai</h5>
+            </div>
+          </div>
           <hr>
           <div style="width: 100%; padding-top:2%;"></div> 
           <div style="width:100%; position:relative; height:30px;"> 
