@@ -71,6 +71,15 @@ $shadow: #ddd;
   }
 }
 
+@keyframes ajaxloading{
+  0%{
+    transform:scale(0,0);
+  }
+  100%{
+    transform:scale(1,1);
+  }
+}
+
 @keyframes scaleanimation{
   0%{
     transform: scale(1,1);
@@ -102,6 +111,37 @@ body{
   animation:scaleanimation 0.5s cubic-bezier(.93,.05,.74,.74);
   transform:scale(6,6);
   background-color:white;
+}
+
+#ajaxloader{
+  position:fixed;
+  z-index:100;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+  background-color:white;
+  div{
+    position:absolute;
+    width:50px;
+    height:50px;
+    border-radius:25px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+  }
+  #colored{
+    background-color:$sidebar;
+    transform:scale(0,0);
+    animation: ajaxloading 0.5s ease-out infinite;
+  }
+  #white{
+    background-color:white;
+    transform:scale(0,0);
+    animation: ajaxloading 0.5s linear infinite;
+  }
 }
 
 .boxshadow_removal{
@@ -638,7 +678,7 @@ body{
     position:relative;
     color:$content;
     text-align:center;
-    animation: slideInFromBottom 0.5s ease-out;
+    animation: slideInFromBottom 0.5s ease-out 0.2s;
     h5{
       color:$content;
       font-size:16px;
@@ -657,7 +697,7 @@ body{
     right:0;
     padding:2%;
     opacity:0.8;
-    animation: fade 0.5s ease-out;
+    animation: fade 0.7s ease-out;
   }
   #date{
     color:$content;
@@ -665,12 +705,12 @@ body{
     left:0;
     opacity:0.8;
     padding:2%;
-    animation: fade 0.5s ease-out;
+    animation: fade 0.7s ease-out;
   }
   #text{
     color:$content;
     font-size:18px;
-    animation: fade 0.5s ease-out;
+    animation: fade 0.7s linear;
     p{
       text-align:justify;
     }

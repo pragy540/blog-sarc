@@ -6,6 +6,13 @@
   <meta property="og:image" content="http://blog.sarc-iitb.org{{MEDIA_URL}}icon.png" />
   <meta property="og:site_name" content="SARC BLOG"/>
 {% endblock %}
+{% block script %}
+  <script type="text/javascript">
+    $(window).on( "load", function() { 
+      $("#ajaxloader").fadeOut(100);
+    });
+  </script>
+{% endblock %}
 {% block content %}
   <div id="#dummy">
   </div>
