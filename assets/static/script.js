@@ -42,6 +42,6 @@ $(document).ready(function(){
     $("#header").animate({top:"-100px",opacity:"0"},500)
     $("hr").delay(200).fadeOut(300);
     $(".post >div").delay(200).fadeOut(300);
-    setTimeout(function(){$("#close_post").children("a")[0].click();},450);
+    setTimeout(function(){$("#close_post").children("a")[0].click();},500);
   });
 });
