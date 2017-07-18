@@ -196,6 +196,7 @@ body{
   margin:10px;
   padding:0px;
   width:auto;
+  cursor:pointer;
   overflow:hidden;
   box-shadow:0 0 10px $shadow;
   border:none;
@@ -660,6 +661,7 @@ body{
   padding-top:5%;
   #close_post{
     position:relative;
+    cursor:pointer;
     right:0px;
     top:.0px;
     width:100%;
@@ -696,7 +698,7 @@ body{
     color:$content;
     position:absolute;
     right:0;
-    padding:2%;
+    padding:0;
     opacity:0.8;
     animation: fade 0.7s ease-out;
   }
@@ -705,7 +707,7 @@ body{
     position:absolute;
     left:0;
     opacity:0.8;
-    padding:2%;
+    padding:0;
     animation: fade 0.7s ease-out;
   }
   #text{
