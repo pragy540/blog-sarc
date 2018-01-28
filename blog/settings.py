@@ -52,8 +52,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
                 'django.template.context_processors.static',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -121,6 +121,12 @@ CKEDITOR_CONFIGS = {
     'width': '100%',
     },
 }
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sarcadmin'
+EMAIL_HOST_PASSWORD = 'admin123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "assets" , "static")

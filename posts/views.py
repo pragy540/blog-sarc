@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
-from .models import Post, Stats
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from .models import Post, Stats, Message
+from .forms import ContactForm
 from django.db.models import Q
 
 from django.template.defaultfilters import slugify
@@ -61,11 +65,28 @@ def old(request):
 		return render(request, 'index.html',{'all_posts':all_posts,'filter':'Oldest'})
 
 def post(request, url):
-    post = Post.objects.get(slug = slugify(url))
-    post.views +=1
-    post.save()
-    return render(request, 'post.html', {'post':post})
+	post = Post.objects.get(slug = slugify(url))
+	post.views +=1
+	post.save()
+	if request.method == 'GET':
+		form = ContactForm()
+	else:
+		form = ContactForm(request.POST)
+		message = Message()
+		if form.is_valid():
+			data = form.save(commit=False)
+			data.save()
+			subject = "SARC BLOG| " + data.subject
+			from_email = data.email
+			body = data.message
+			try:
+				send_mail(subject, body, from_email, ['mrinal.dharmik@gmail.com','mantrikaran@gmail.com','tanaytirpude123@gmail.com'], fail_silently=False)
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			messages.success(request, "Message recieved. \nWe will get back to you as soon as possible.")
+	return render(request, 'post.html', {'post':post,'form':form})
 
+#
 def hits(request):
 	number = Stats.objects.get(name='sarcadmin')
 	all_posts = Post.objects.all().filter(published = True)

@@ -45,3 +45,15 @@ class Post(models.Model):
 
 	class Meta:
 		ordering = ['-date','-id']
+
+class Message(models.Model):
+	subject = models.CharField(max_length = 200, blank=False)
+	email = models.EmailField(max_length=32, blank=False)
+	message = models.TextField(blank=False);
+
+	def __unicode__(self):
+		return self.subject
+
+	class Meta:
+		ordering = ['-id']
+		
