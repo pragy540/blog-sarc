@@ -1,4 +1,5 @@
 import os
+from .password import PASSWORD
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -70,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb',
         'USER': 'root',
-        'PASSWORD': 'admin123',
+        'PASSWORD': PASSWORD,
         'HOST': 'localhost',
         'PORT': '3306',
     }
