@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load date %}
 {% block meta %}
   <meta property="og:title" content="{{post.title}}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://blog.sarc-iitb.org{% url 'posts:post' post.slug %}" />
-  <meta property="og:image" content="http://blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
+  <meta property="og:url" content="https://blog.sarc-iitb.org{% url 'posts:post' post.slug %}" />
+  <meta property="og:image" content="https://blog.sarc-iitb.org{{MEDIA_URL}}{{ post.thumbnail }}" />
   <meta property="og:description" content="{{ post.text|safe|striptags|truncatechars:250 }}" />
   <meta property="og:site_name" content="SARC BLOG"/>
 {% endblock %}
@@ -47,14 +48,26 @@
           <hr>
           <div id="text">{{post.text|safe}}</div>
           <hr>
-          <div style="position:relative; height:30px;"> 
-            <div id="like">
-              <div class="fb-like" data-layout="button_count" data-action="like" data-colorscheme="dark" data-size="large" data-show-faces="false" data-share="false"></div>
+	{% if post|hasFB %}
+            <div style="position:relative; height:30px;"> 
+              <div id="like">
+                <div class="fb-like" data-layout="button_count" data-action="like" data-colorscheme="dark" data-size="large" data-show-faces="false" data-share="false"></div>
+              </div>
+              <div id="share">
+                <div class="fb-share-button" data-layout="button" data-size="large" data-numposts="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Share</a></div>
+              </div>
             </div>
-            <div id="share">
-              <div class="fb-share-button" data-layout="button" data-size="large" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Share</a></div>
+          {% else %}
+            <div style="position:relative; height:30px;"> 
+              <div id="like">
+                <button id='like-button' style="padding: 5px; border-radius: 4px;background-color: rgb(49, 110, 201); color: white; font-weight: bold;">Views {{ post.views }}</button>
+              </div>
+              
+              <div id="share">
+                <div class="fb-share-button" data-layout="button" data-size="large" data-numposts="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">Share</a></div>
+              </div>
             </div>
-          </div>
+          {% endif %}
           <hr>
           <div id="mailme" class="col-xs-12 col-sm-8">
             <h3 class="col-xs-12">Contact Us</h3>
